@@ -202,23 +202,18 @@
 
     footer { position: relative; z-index: 10; text-align: center; padding: 20px; border-top: 1px solid var(--border); font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.06em; }
 
-    @media (max-width: 680px) {
-      header { padding: 14px 16px; }
-      .header-badge { display: none; }
-      .usage-grid { grid-template-columns: 1fr; }
-      .two-col { grid-template-columns: 1fr; }
-      .system-primary-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
-      .system-primary-item { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
-      .system-primary-item:nth-child(2n) { border-bottom: 1px solid var(--border); }
-      .system-primary-item:nth-last-child(-n+2) { border-bottom: none; }
-      .cost-card { grid-template-columns: 1fr; }
-      .cost-divider { display: none; }
-      .stat-tooltip { left: 0; transform: none; width: 200px; }
-    }
-
     /* BATTERY SECTION */
     .battery-section { margin-bottom: 20px; }
-    .battery-section-label { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 14px; }
+    .battery-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
+    .battery-section-label { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0; }
+    
+    .battery-qty-container { display: none; align-items: center; gap: 8px; }
+    .battery-qty-container.active { display: flex; }
+    .battery-qty-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--sun); text-transform: uppercase; letter-spacing: 0.08em; }
+    .battery-qty-select { background: rgba(10,22,40,0.8); border: 1px solid rgba(255,184,0,0.25); border-radius: 8px; padding: 6px 12px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.85rem; outline: none; cursor: pointer; }
+    .battery-qty-select:focus { border-color: var(--sun); }
+    .battery-qty-select option { background: #0A1628; }
+
     .battery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 12px; }
     .battery-card {
       background: var(--card); border: 1px solid var(--border); border-radius: 14px;
@@ -232,9 +227,6 @@
     .battery-capacity { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); margin-bottom: 10px; }
     .battery-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--sun); letter-spacing: -0.02em; }
     .battery-price-note { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--muted); margin-top: 2px; }
-    .battery-none-btn { padding: 8px 20px; background: transparent; border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 0.72rem; cursor: pointer; transition: all 0.2s; letter-spacing: 0.05em; }
-    .battery-none-btn:hover { border-color: rgba(255,184,0,0.3); color: var(--text); }
-    .battery-none-btn.selected { border-color: var(--sun); color: var(--sun); background: rgba(255,184,0,0.06); }
 
     /* COST CONTROLS (loan term/rate/recalc) */
     .cost-controls { grid-column: 1/-1; display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; padding-top: 16px; border-top: 1px solid var(--border); margin-top: 4px; }
@@ -274,6 +266,17 @@
     .disclaimer-body p:last-child { margin-bottom: 0; }
 
     @media (max-width: 680px) {
+      header { padding: 14px 16px; }
+      .header-badge { display: none; }
+      .usage-grid { grid-template-columns: 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+      .system-primary-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .system-primary-item { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+      .system-primary-item:nth-child(2n) { border-bottom: 1px solid var(--border); }
+      .system-primary-item:nth-last-child(-n+2) { border-bottom: none; }
+      .cost-card { grid-template-columns: 1fr; }
+      .cost-divider { display: none; }
+      .stat-tooltip { left: 0; transform: none; width: 200px; }
       .battery-grid { grid-template-columns: 1fr; }
       .cost-controls { flex-direction: column; align-items: flex-start; gap: 12px; }
     }
@@ -373,7 +376,6 @@
   </div>
 </div>
 
-<!-- MAP -->
 <div id="map-container">
   <div class="map-header">
     <div class="map-title">Satellite Roof View</div>
@@ -384,7 +386,6 @@
   <div class="legend" id="legend"></div>
 </div>
 
-<!-- NO DATA -->
 <div class="no-data-card" id="no-data-card">
   <div class="no-data-inner">
     <div class="no-data-icon">🛰️</div>
@@ -393,10 +394,8 @@
   </div>
 </div>
 
-<!-- RESULTS -->
 <div id="results-section">
 
-  <!-- PRIMARY SYSTEM CARD -->
   <div class="system-card">
     <div class="system-card-title">Recommended Solar System Design</div>
     <div class="system-primary-grid">
@@ -428,9 +427,21 @@
     </div>
   </div>
 
-  <!-- BATTERY SELECTION -->
   <div class="battery-section" id="battery-section">
-    <div class="battery-section-label">🔋 Add Battery Storage (Optional)</div>
+    <div class="battery-header">
+      <div class="battery-section-label">🔋 Add Battery Storage (Optional)</div>
+      <div class="battery-qty-container" id="battery-qty-container">
+        <label class="battery-qty-label" for="battery-qty">Quantity</label>
+        <select id="battery-qty" class="battery-qty-select">
+          <option value="1" selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+    </div>
+    
     <div class="battery-grid">
 
       <div class="battery-card" id="bat-none" onclick="selectBattery('none')" style="border-color:var(--sun);background:rgba(255,184,0,0.08)">
@@ -468,7 +479,6 @@
     </div>
   </div>
 
-  <!-- COST ESTIMATE CARD -->
   <div class="cost-card" id="cost-card">
     <div class="cost-item">
       <div class="cost-value" id="c-range">—</div>
@@ -507,7 +517,6 @@
     </div>
   </div>
 
-  <!-- ESTIMATE SUMMARY BREAKDOWN -->
   <div class="summary-section" id="summary-section" style="display:none">
     <div class="stats-row-label">📋 Estimate Summary</div>
     <div class="summary-card">
@@ -542,7 +551,6 @@
     </div>
   </div>
 
-  <!-- DISCLAIMER -->
   <div class="disclaimer-card" id="disclaimer-card" style="display:none">
     <div class="disclaimer-title">⚠ Important Disclaimer</div>
     <div class="disclaimer-body">
@@ -554,7 +562,6 @@
     </div>
   </div>
 
-  <!-- SECONDARY STATS -->
   <div class="stats-row-label">Roof & Solar Details</div>
   <div class="stats-grid">
 
@@ -961,6 +968,16 @@
       const el = document.getElementById('bat-' + k);
       if (el) el.classList.toggle('selected', k === key);
     });
+
+    const qtyContainer = document.getElementById('battery-qty-container');
+    if (key === 'none') {
+      qtyContainer.classList.remove('active');
+      const qtySelect = document.getElementById('battery-qty');
+      if(qtySelect) qtySelect.value = "1";
+    } else {
+      qtyContainer.classList.add('active');
+    }
+
     recalcPayment();
   }
 
@@ -1029,7 +1046,8 @@
 
     const termYears  = parseInt(document.getElementById('loan-term')?.value  || 30);
     const annualRate = parseFloat(document.getElementById('loan-rate')?.value || 8);
-    const batPrice   = BATTERIES[selectedBattery]?.price || 0;
+    const batQty     = selectedBattery === 'none' ? 1 : parseInt(document.getElementById('battery-qty')?.value || 1);
+    const batPrice   = (BATTERIES[selectedBattery]?.price || 0) * batQty;
     const totalCost  = midCost + batPrice;
 
     // Amortization: M = P * [r(1+r)^n] / [(1+r)^n - 1]
@@ -1048,7 +1066,7 @@
     if (batPrice > 0) {
       const bat = BATTERIES[selectedBattery];
       document.getElementById('cost-note').textContent =
-        'Solar system estimate + ' + bat.name + ' ($' + batPrice.toLocaleString() + '). Full breakdown in summary below.';
+        'Solar system estimate + ' + bat.name + (batQty > 1 ? ' (x' + batQty + ')' : '') + ' ($' + batPrice.toLocaleString() + '). Full breakdown in summary below.';
     } else {
       document.getElementById('cost-note').textContent =
         'Estimates based on $2,500–$3,200/kW installed cost range. Actual quotes vary widely.';
@@ -1073,7 +1091,8 @@
     const termYears  = parseInt(document.getElementById('loan-term')?.value  || 30);
     const annualRate = parseFloat(document.getElementById('loan-rate')?.value || 8);
     const bat        = BATTERIES[selectedBattery];
-    const batPrice   = bat.price;
+    const batQty     = selectedBattery === 'none' ? 1 : parseInt(document.getElementById('battery-qty')?.value || 1);
+    const batPrice   = bat.price * batQty;
     const totalCost  = midCost + batPrice;
 
     const r = (annualRate / 100) / 12;
@@ -1094,7 +1113,7 @@
 
     const batRow = document.getElementById('sum-battery-row');
     if (batPrice > 0) {
-      document.getElementById('sum-battery-label').textContent = bat.name;
+      document.getElementById('sum-battery-label').textContent = bat.name + (batQty > 1 ? ' (x' + batQty + ')' : '');
       document.getElementById('sum-battery-cost').textContent  = '+$' + batPrice.toLocaleString();
       batRow.style.display = 'flex';
     } else {
@@ -1119,6 +1138,7 @@
   document.getElementById('rate').addEventListener('input', function(){ this.value=this.value.replace(/[^0-9.]/g,''); });
   document.getElementById('loan-rate')?.addEventListener('input', function(){ this.value=this.value.replace(/[^0-9.]/g,''); recalcPayment(); });
   document.getElementById('loan-term')?.addEventListener('change', () => recalcPayment());
+  document.getElementById('battery-qty')?.addEventListener('change', () => recalcPayment());
 
 </script>
 
