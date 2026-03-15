@@ -373,6 +373,7 @@
   </div>
 </div>
 
+<!-- MAP -->
 <div id="map-container">
   <div class="map-header">
     <div class="map-title">Satellite Roof View</div>
@@ -383,6 +384,7 @@
   <div class="legend" id="legend"></div>
 </div>
 
+<!-- NO DATA -->
 <div class="no-data-card" id="no-data-card">
   <div class="no-data-inner">
     <div class="no-data-icon">🛰️</div>
@@ -391,8 +393,10 @@
   </div>
 </div>
 
+<!-- RESULTS -->
 <div id="results-section">
 
+  <!-- PRIMARY SYSTEM CARD -->
   <div class="system-card">
     <div class="system-card-title">Recommended Solar System Design</div>
     <div class="system-primary-grid">
@@ -424,6 +428,7 @@
     </div>
   </div>
 
+  <!-- BATTERY SELECTION -->
   <div class="battery-section" id="battery-section">
     <div class="battery-section-label">🔋 Add Battery Storage (Optional)</div>
     <div class="battery-grid">
@@ -463,6 +468,7 @@
     </div>
   </div>
 
+  <!-- COST ESTIMATE CARD -->
   <div class="cost-card" id="cost-card">
     <div class="cost-item">
       <div class="cost-value" id="c-range">—</div>
@@ -501,6 +507,7 @@
     </div>
   </div>
 
+  <!-- ESTIMATE SUMMARY BREAKDOWN -->
   <div class="summary-section" id="summary-section" style="display:none">
     <div class="stats-row-label">📋 Estimate Summary</div>
     <div class="summary-card">
@@ -535,6 +542,7 @@
     </div>
   </div>
 
+  <!-- DISCLAIMER -->
   <div class="disclaimer-card" id="disclaimer-card" style="display:none">
     <div class="disclaimer-title">⚠ Important Disclaimer</div>
     <div class="disclaimer-body">
@@ -546,6 +554,7 @@
     </div>
   </div>
 
+  <!-- SECONDARY STATS -->
   <div class="stats-row-label">Roof & Solar Details</div>
   <div class="stats-grid">
 
@@ -970,7 +979,7 @@
     document.getElementById('r-offset-pct').textContent = offsetCapped + '%';
     setTimeout(()=>{ document.getElementById('r-offset-fill').style.width = Math.min(offsetCapped, 100) + '%'; }, 60);
     document.getElementById('r-offset-note').textContent =
-      offsetCapped >= 120 ? "This system would over-produce — you'd export excess power back to the grid." :
+      offsetCapped >= 120 ? 'This system would over-produce — you'd export excess power back to the grid.' :
       offsetCapped >= 100 ? 'This system covers 100%+ of your usage — any surplus exported to grid.' :
       offsetCapped >=  90 ? 'Near full coverage — this system would cover almost your entire electricity bill.' :
       offsetCapped >=  70 ? 'Strong coverage — this system offsets the majority of your electric bill.' :
