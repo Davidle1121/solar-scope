@@ -215,6 +215,68 @@
       .cost-divider { display: none; }
       .stat-tooltip { left: 0; transform: none; width: 200px; }
     }
+
+    /* BATTERY SECTION */
+    .battery-section { margin-bottom: 20px; }
+    .battery-section-label { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 14px; }
+    .battery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 12px; }
+    .battery-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 18px 18px 16px; cursor: pointer; transition: all 0.2s; position: relative; overflow: visible;
+    }
+    .battery-card:hover { border-color: rgba(255,184,0,0.35); transform: translateY(-2px); }
+    .battery-card.selected { border-color: var(--sun); background: rgba(255,184,0,0.08); }
+    .battery-card.selected::before { content:'✓'; position:absolute; top:10px; right:12px; color:var(--sun); font-family:'Syne',sans-serif; font-weight:800; font-size:0.85rem; }
+    .battery-brand { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+    .battery-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--text); margin-bottom: 4px; line-height: 1.3; }
+    .battery-capacity { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); margin-bottom: 10px; }
+    .battery-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--sun); letter-spacing: -0.02em; }
+    .battery-price-note { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--muted); margin-top: 2px; }
+    .battery-none-btn { padding: 8px 20px; background: transparent; border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 0.72rem; cursor: pointer; transition: all 0.2s; letter-spacing: 0.05em; }
+    .battery-none-btn:hover { border-color: rgba(255,184,0,0.3); color: var(--text); }
+    .battery-none-btn.selected { border-color: var(--sun); color: var(--sun); background: rgba(255,184,0,0.06); }
+
+    /* COST CONTROLS (loan term/rate/recalc) */
+    .cost-controls { grid-column: 1/-1; display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; padding-top: 16px; border-top: 1px solid var(--border); margin-top: 4px; }
+    .cost-control-group { display: flex; flex-direction: column; gap: 4px; }
+    .cost-ctrl-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--sun); text-transform: uppercase; letter-spacing: 0.08em; }
+    .cost-ctrl-input { background: rgba(10,22,40,0.8); border: 1px solid rgba(255,184,0,0.25); border-radius: 8px; padding: 8px 12px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; width: 130px; }
+    .cost-ctrl-input:focus { outline: none; border-color: var(--sun); }
+    .cost-ctrl-unit { position:absolute; right:10px; top:50%; transform:translateY(-50%); font-family:'DM Mono',monospace; font-size:0.75rem; color:var(--muted); pointer-events:none; }
+    .recalc-btn { padding: 9px 22px; background: rgba(255,184,0,0.15); border: 1px solid rgba(255,184,0,0.4); border-radius: 8px; color: var(--sun); font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+    .recalc-btn:hover { background: rgba(255,184,0,0.28); box-shadow: 0 0 16px rgba(255,184,0,0.2); }
+
+    /* ESTIMATE SUMMARY BREAKDOWN */
+    .summary-section { margin-bottom: 20px; }
+    .summary-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; backdrop-filter: blur(12px); }
+    .summary-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+    .summary-title::after { content:''; flex:1; height:1px; background:var(--border); }
+    .summary-line { display: flex; justify-content: space-between; align-items: baseline; padding: 9px 0; border-bottom: 1px solid rgba(255,184,0,0.06); font-size: 0.88rem; }
+    .summary-line:last-of-type { border-bottom: none; }
+    .summary-line-label { color: var(--muted); font-family: 'DM Sans', sans-serif; }
+    .summary-line-label.indent { padding-left: 16px; font-size: 0.82rem; }
+    .summary-line-value { font-family: 'DM Mono', monospace; color: var(--text); font-size: 0.88rem; }
+    .summary-line-value.highlight { color: var(--sun); font-weight: 500; }
+    .summary-divider { border: none; border-top: 1px solid var(--border); margin: 8px 0; }
+    .summary-total-row { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 0 4px; }
+    .summary-total-label { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); }
+    .summary-total-value { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--sun); letter-spacing: -0.02em; }
+    .summary-monthly { text-align: right; font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+
+    /* DISCLAIMER */
+    .disclaimer-card {
+      background: rgba(255,184,0,0.04); border: 1px solid rgba(255,184,0,0.15);
+      border-radius: 14px; padding: 20px 24px; margin-bottom: 20px;
+    }
+    .disclaimer-title { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--sun); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+    .disclaimer-body { font-size: 0.79rem; color: var(--muted); line-height: 1.7; }
+    .disclaimer-body p { margin-bottom: 8px; }
+    .disclaimer-body p:last-child { margin-bottom: 0; }
+
+    @media (max-width: 680px) {
+      .battery-grid { grid-template-columns: 1fr; }
+      .cost-controls { flex-direction: column; align-items: flex-start; gap: 12px; }
+    }
   </style>
 </head>
 <body>
@@ -366,25 +428,129 @@
     </div>
   </div>
 
+  <!-- BATTERY SELECTION -->
+  <div class="battery-section" id="battery-section">
+    <div class="battery-section-label">🔋 Add Battery Storage (Optional)</div>
+    <div class="battery-grid">
+
+      <div class="battery-card" id="bat-none" onclick="selectBattery('none')" style="border-color:var(--sun);background:rgba(255,184,0,0.08)">
+        <div class="battery-brand">No Battery</div>
+        <div class="battery-name">Solar panels only</div>
+        <div class="battery-capacity">Grid-tied system</div>
+        <div class="battery-price">$0</div>
+        <div class="battery-price-note">No battery storage</div>
+      </div>
+
+      <div class="battery-card" id="bat-pw3" onclick="selectBattery('pw3')">
+        <div class="battery-brand">Tesla</div>
+        <div class="battery-name">Powerwall 3</div>
+        <div class="battery-capacity">13.5 kWh · 11.5 kW continuous</div>
+        <div class="battery-price">$15,000</div>
+        <div class="battery-price-note">Installed estimate</div>
+      </div>
+
+      <div class="battery-card" id="bat-pw3x" onclick="selectBattery('pw3x')">
+        <div class="battery-brand">Tesla</div>
+        <div class="battery-name">Powerwall 3 + Expansion Pack</div>
+        <div class="battery-capacity">27 kWh total · 2-unit system</div>
+        <div class="battery-price">$20,000</div>
+        <div class="battery-price-note">PW3 $15k + Expansion $5k</div>
+      </div>
+
+      <div class="battery-card" id="bat-sig" onclick="selectBattery('sig')">
+        <div class="battery-brand">Sigenergy</div>
+        <div class="battery-name">SigenStor 9 kWh LFP</div>
+        <div class="battery-capacity">9 kWh · LFP chemistry · 6kW</div>
+        <div class="battery-price">$4,000</div>
+        <div class="battery-price-note">Installed estimate</div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- COST ESTIMATE CARD -->
   <div class="cost-card" id="cost-card">
     <div class="cost-item">
       <div class="cost-value" id="c-range">—</div>
-      <div class="cost-label">Estimated System Cost</div>
+      <div class="cost-label">Solar System Cost</div>
     </div>
     <div class="cost-divider"></div>
     <div class="cost-item">
       <div class="cost-value" id="c-monthly">—</div>
-      <div class="cost-label">Est. Monthly Payment (30yr/8%)</div>
+      <div class="cost-label" id="c-monthly-label">Est. Monthly Payment</div>
     </div>
     <div class="cost-divider"></div>
     <div class="cost-item">
       <div class="cost-value" id="c-payback">—</div>
       <div class="cost-label">Simple Payback</div>
     </div>
-    <div class="cost-note">
-      Estimates based on $2,500–$3,200/kW installed cost range. Actual quotes vary. Get 2–3 bids from licensed installers.
-      Monthly payment assumes 30-year loan at 8% interest.
+    <div class="cost-note" id="cost-note">
+      Estimates based on $2,500–$3,200/kW installed cost range. Actual quotes vary widely.
+    </div>
+    <div class="cost-controls">
+      <div class="cost-control-group">
+        <label class="cost-ctrl-label" for="loan-term">Loan Term</label>
+        <select id="loan-term" class="cost-ctrl-input">
+          <option value="20">20 years</option>
+          <option value="25">25 years</option>
+          <option value="30" selected>30 years</option>
+        </select>
+      </div>
+      <div class="cost-control-group">
+        <label class="cost-ctrl-label" for="loan-rate">Interest Rate</label>
+        <div style="position:relative">
+          <input type="text" inputmode="decimal" id="loan-rate" class="cost-ctrl-input" value="8" placeholder="8"/>
+          <span class="cost-ctrl-unit">%</span>
+        </div>
+      </div>
+      <button class="recalc-btn" onclick="recalcPayment()">↻ Recalculate</button>
+    </div>
+  </div>
+
+  <!-- ESTIMATE SUMMARY BREAKDOWN -->
+  <div class="summary-section" id="summary-section" style="display:none">
+    <div class="stats-row-label">📋 Estimate Summary</div>
+    <div class="summary-card">
+      <div class="summary-title">Solar System</div>
+      <div class="summary-line"><span class="summary-line-label">System size</span><span class="summary-line-value" id="sum-system-kw">—</span></div>
+      <div class="summary-line"><span class="summary-line-label">Panels recommended</span><span class="summary-line-value" id="sum-panels">—</span></div>
+      <div class="summary-line"><span class="summary-line-label">Panel wattage</span><span class="summary-line-value" id="sum-panel-w">—</span></div>
+      <div class="summary-line"><span class="summary-line-label">Est. annual production</span><span class="summary-line-value" id="sum-production">—</span></div>
+      <div class="summary-line"><span class="summary-line-label">Your annual usage</span><span class="summary-line-value" id="sum-consumption">—</span></div>
+      <div class="summary-line"><span class="summary-line-label">Solar offset</span><span class="summary-line-value highlight" id="sum-offset">—</span></div>
+
+      <div class="summary-title" style="margin-top:18px">Pricing Estimate</div>
+      <div class="summary-line"><span class="summary-line-label">Solar system (low estimate)</span><span class="summary-line-value" id="sum-low">—</span></div>
+      <div class="summary-line"><span class="summary-line-label">Solar system (high estimate)</span><span class="summary-line-value" id="sum-high">—</span></div>
+      <div class="summary-line" id="sum-battery-row" style="display:none">
+        <span class="summary-line-label" id="sum-battery-label">Battery storage</span>
+        <span class="summary-line-value highlight" id="sum-battery-cost">—</span>
+      </div>
+      <hr class="summary-divider">
+      <div class="summary-total-row">
+        <div class="summary-total-label">Total Estimate (mid + battery)</div>
+        <div class="summary-total-value" id="sum-total">—</div>
+      </div>
+      <div class="summary-monthly" id="sum-monthly-note">—</div>
+      <div class="summary-line" style="margin-top:12px"><span class="summary-line-label">Simple payback period</span><span class="summary-line-value" id="sum-payback">—</span></div>
+
+      <div class="summary-title" style="margin-top:18px">Roof Details</div>
+      <div class="summary-line"><span class="summary-line-label">Address</span><span class="summary-line-value" id="sum-address" style="font-size:0.78rem;max-width:280px;text-align:right">—</span></div>
+      <div class="summary-line"><span class="summary-line-label">Roof sections detected</span><span class="summary-line-value" id="sum-segments">—</span></div>
+      <div class="summary-line"><span class="summary-line-label">Peak sun hours/year</span><span class="summary-line-value" id="sum-sunshine">—</span></div>
+      <div class="summary-line"><span class="summary-line-label">Max roof capacity (panels)</span><span class="summary-line-value" id="sum-maxpanels">—</span></div>
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer-card" id="disclaimer-card" style="display:none">
+    <div class="disclaimer-title">⚠ Important Disclaimer</div>
+    <div class="disclaimer-body">
+      <p><strong>This tool is for entertainment and educational purposes only.</strong> SolarScope is a personal proof-of-concept project and is not affiliated with, endorsed by, or connected to any solar installer, manufacturer, or financial institution.</p>
+      <p><strong>Pricing is entirely fictitious and illustrative.</strong> Battery prices, installation costs, and system estimates displayed on this page do not represent real quotes, market pricing, or any actual product offering. Tesla Powerwall, Sigenergy, and all other brand names referenced are trademarks of their respective owners and are used here for identification purposes only.</p>
+      <p><strong>Solar production estimates come from Google's Solar API</strong> and reflect modeled irradiance data — actual production will vary based on weather, shading, panel orientation, inverter efficiency, temperature, and system degradation over time.</p>
+      <p><strong>Do not make any financial decisions based on this tool.</strong> Always consult with licensed solar installers, a certified financial advisor, and your utility company before purchasing a solar system. Get at least 2–3 independent quotes from licensed contractors in your area.</p>
+      <p>Data provided by Google Solar API · Map imagery © Google / Airbus · SolarScope is a personal POC project · Not financial advice · Not a licensed contractor</p>
     </div>
   </div>
 
@@ -437,10 +603,10 @@
   </div>
 </div>
 
-<footer>SOLARSCOPE · PERSONAL POC · DATA: GOOGLE SOLAR API · ALL ESTIMATES APPROXIMATE — NOT FINANCIAL ADVICE</footer>
+<footer>SOLARSCOPE · PERSONAL POC · FOR ENTERTAINMENT PURPOSES ONLY · DATA: GOOGLE SOLAR API · PRICING IS FICTIONAL · NOT FINANCIAL ADVICE · NOT A LICENSED CONTRACTOR</footer>
 
 <script>
-  const API_KEY = '__GOOGLE_API_KEY__';
+  const API_KEY = '%%GOOGLE_API_KEY%%';
 
   // Panel colors — one per roof segment
   const SEG_COLORS = ['#FFB800','#3B82F6','#10B981','#EC4899','#A78BFA','#F97316','#06B6D4','#EF4444','#84CC16','#F43F5E'];
@@ -548,7 +714,7 @@
 
       setStatus('🗺️ Mapping your panel layout…');
       await renderMap(lat, lng, solar, formattedAddress, design);
-      renderResults(solar, design, monthlyKwh, monthlyBill || (monthlyKwh * rate / 100), rate);
+      renderResults(solar, design, monthlyKwh, monthlyBill || (monthlyKwh * rate / 100), rate, formattedAddress);
       setStatus('');
 
       setTimeout(() => document.getElementById('map-container').scrollIntoView({ behavior:'smooth', block:'start' }), 120);
@@ -652,6 +818,10 @@
     document.getElementById('map-container').classList.remove('visible');
     document.getElementById('results-section').style.display = 'none';
     document.getElementById('no-data-card').classList.remove('visible');
+    document.getElementById('summary-section').style.display = 'none';
+    document.getElementById('disclaimer-card').style.display = 'none';
+    document.getElementById('battery-section').style.display = 'none';
+    selectBattery('none');
   }
 
   // ── Geocoding ─────────────────────────────────────────────
@@ -776,9 +946,28 @@
     ];
   }
 
-  // ── Render results to match TSP format ───────────────────
-  function renderResults(solar, design, monthlyKwh, monthlyBillAmt, rate) {
+  // ── Battery options ─────────────────────────────────────
+  const BATTERIES = {
+    none:  { name: 'None',                           price: 0     },
+    pw3:   { name: 'Tesla Powerwall 3',              price: 15000 },
+    pw3x:  { name: 'Tesla Powerwall 3 + Expansion',  price: 20000 },
+    sig:   { name: 'Sigenergy SigenStor 9 kWh LFP',  price: 4000  },
+  };
+  let selectedBattery = 'none';
+
+  function selectBattery(key) {
+    selectedBattery = key;
+    ['none','pw3','pw3x','sig'].forEach(k => {
+      const el = document.getElementById('bat-' + k);
+      if (el) el.classList.toggle('selected', k === key);
+    });
+    recalcPayment();
+  }
+
+  // ── Render results ────────────────────────────────────────
+  function renderResults(solar, design, monthlyKwh, monthlyBillAmt, rate, address) {
     const sp = solar.solarPotential;
+    const panelW = parseInt(document.getElementById('panel-watts').value);
 
     // PRIMARY SYSTEM CARD
     document.getElementById('r-system-kw').textContent   = design.systemKw.toFixed(2);
@@ -790,37 +979,136 @@
     document.getElementById('r-offset-pct').textContent = offsetCapped + '%';
     setTimeout(()=>{ document.getElementById('r-offset-fill').style.width = Math.min(offsetCapped, 100) + '%'; }, 60);
     document.getElementById('r-offset-note').textContent =
-      offsetCapped >= 120 ? 'This system would over-produce — you\'d export excess power back to the grid.' :
+      offsetCapped >= 120 ? 'This system would over-produce — you'd export excess power back to the grid.' :
       offsetCapped >= 100 ? 'This system covers 100%+ of your usage — any surplus exported to grid.' :
       offsetCapped >=  90 ? 'Near full coverage — this system would cover almost your entire electricity bill.' :
       offsetCapped >=  70 ? 'Strong coverage — this system offsets the majority of your electric bill.' :
                             'Partial coverage — consider a larger system or confirm your usage numbers.';
 
-    // COST ESTIMATE
+    // Store globals for recalc
     const lowCost  = design.systemKw * 2500;
     const highCost = design.systemKw * 3200;
     const midCost  = (lowCost + highCost) / 2;
-    // Monthly payment: 30yr at 8% = factor 0.007338
-    const monthlyPayment = midCost * 0.007338;
-    const annualSavings  = monthlyBillAmt ? Math.min(monthlyBillAmt * 12, design.annualProduction * (rate/100)) : null;
-    const payback        = annualSavings  ? (midCost / annualSavings).toFixed(1) : null;
+    window._midCost     = midCost;
+    window._lowCost     = lowCost;
+    window._highCost    = highCost;
+    window._lastDesign  = design;
+    window._lastBillAmt = monthlyBillAmt;
+    window._lastRate    = rate;
+    window._lastAddress = address;
+    window._lastPanelW  = panelW;
+    window._lastSolar   = solar;
 
-    document.getElementById('c-range').textContent   = '$' + Math.round(lowCost/1000)*1000 .toLocaleString() + '–$' + Math.round(highCost/1000)*1000 .toLocaleString();
-    document.getElementById('c-monthly').textContent = '$' + Math.round(monthlyPayment) + '/mo';
-    document.getElementById('c-payback').textContent = payback ? payback + ' yrs' : '—';
+    document.getElementById('c-range').textContent = '$' + (Math.round(lowCost/1000)*1000).toLocaleString() + '–$' + (Math.round(highCost/1000)*1000).toLocaleString();
+    recalcPayment();
 
     // SECONDARY STATS
     document.getElementById('s-maxpanels').textContent = design.maxPanels ? design.maxPanels.toLocaleString() : '—';
     document.getElementById('s-sunshine').textContent  = sp.maxSunshineHoursPerYear ? Math.round(sp.maxSunshineHoursPerYear).toLocaleString()+' hrs' : '—';
-    const configs = sp.solarPanelConfigs || [];
-    const thisCfg = configs.find(c=>c.panelsCount===design.recommendedPanels) || (configs.length ? configs[configs.length-1] : null);
     const thisCfgArea = sp.maxArrayAreaMeters2 ? Math.round(sp.maxArrayAreaMeters2 * (design.recommendedPanels / design.maxPanels)) : null;
     document.getElementById('s-area').textContent      = thisCfgArea ? thisCfgArea + ' m²' : '—';
     document.getElementById('s-segments').textContent  = sp.roofSegmentStats?.length ?? '—';
     document.getElementById('s-carbon').textContent    = sp.carbonOffsetFactorKgPerMwh ? Math.round(sp.carbonOffsetFactorKgPerMwh)+' kg' : '—';
     document.getElementById('s-maxenergy').textContent = design.maxAnnualKwh ? Math.round(design.maxAnnualKwh).toLocaleString()+' kWh' : '—';
 
+    // Show battery, summary, disclaimer
+    document.getElementById('battery-section').style.display = 'block';
     document.getElementById('results-section').style.display = 'block';
+    document.getElementById('summary-section').style.display = 'block';
+    document.getElementById('disclaimer-card').style.display = 'block';
+    updateSummary();
+  }
+
+  // ── Loan payment recalculator ─────────────────────────────
+  function recalcPayment() {
+    const midCost   = window._midCost;
+    const design    = window._lastDesign;
+    const billAmt   = window._lastBillAmt;
+    const utilRate  = window._lastRate;
+    if (!midCost || !design) return;
+
+    const termYears  = parseInt(document.getElementById('loan-term')?.value  || 30);
+    const annualRate = parseFloat(document.getElementById('loan-rate')?.value || 8);
+    const batPrice   = BATTERIES[selectedBattery]?.price || 0;
+    const totalCost  = midCost + batPrice;
+
+    // Amortization: M = P * [r(1+r)^n] / [(1+r)^n - 1]
+    const r = (annualRate / 100) / 12;
+    const n = termYears * 12;
+    const factor = r > 0 ? r * Math.pow(1+r,n) / (Math.pow(1+r,n) - 1) : 1/n;
+    const monthlyPayment = totalCost * factor;
+
+    const annualSavings = billAmt ? Math.min(billAmt * 12, design.annualProduction * (utilRate/100)) : null;
+    const payback       = annualSavings ? (totalCost / annualSavings).toFixed(1) : null;
+
+    document.getElementById('c-monthly').textContent = '$' + Math.round(monthlyPayment).toLocaleString() + '/mo';
+    document.getElementById('c-monthly-label').textContent = 'Est. Monthly Payment (' + termYears + 'yr/' + annualRate + '%)';
+    document.getElementById('c-payback').textContent = payback ? payback + ' yrs' : '—';
+
+    if (batPrice > 0) {
+      const bat = BATTERIES[selectedBattery];
+      document.getElementById('cost-note').textContent =
+        'Solar system estimate + ' + bat.name + ' ($' + batPrice.toLocaleString() + '). Full breakdown in summary below.';
+    } else {
+      document.getElementById('cost-note').textContent =
+        'Estimates based on $2,500–$3,200/kW installed cost range. Actual quotes vary widely.';
+    }
+    updateSummary();
+  }
+
+  // ── Summary breakdown ─────────────────────────────────────
+  function updateSummary() {
+    const design    = window._lastDesign;
+    const solar     = window._lastSolar;
+    const midCost   = window._midCost;
+    const lowCost   = window._lowCost;
+    const highCost  = window._highCost;
+    const billAmt   = window._lastBillAmt;
+    const utilRate  = window._lastRate;
+    const panelW    = window._lastPanelW;
+    const address   = window._lastAddress;
+    if (!design || !solar) return;
+
+    const sp         = solar.solarPotential;
+    const termYears  = parseInt(document.getElementById('loan-term')?.value  || 30);
+    const annualRate = parseFloat(document.getElementById('loan-rate')?.value || 8);
+    const bat        = BATTERIES[selectedBattery];
+    const batPrice   = bat.price;
+    const totalCost  = midCost + batPrice;
+
+    const r = (annualRate / 100) / 12;
+    const n = termYears * 12;
+    const factor = r > 0 ? r * Math.pow(1+r,n) / (Math.pow(1+r,n) - 1) : 1/n;
+    const monthlyPayment = totalCost * factor;
+    const annualSavings  = billAmt ? Math.min(billAmt * 12, design.annualProduction * (utilRate/100)) : null;
+    const payback        = annualSavings ? (totalCost / annualSavings).toFixed(1) : null;
+
+    document.getElementById('sum-system-kw').textContent   = design.systemKw.toFixed(2) + ' kW';
+    document.getElementById('sum-panels').textContent      = design.recommendedPanels + ' panels';
+    document.getElementById('sum-panel-w').textContent     = (panelW||440) + 'W per panel';
+    document.getElementById('sum-production').textContent  = Math.round(design.annualProduction).toLocaleString() + ' kWh/yr';
+    document.getElementById('sum-consumption').textContent = Math.round(design.annualConsumption).toLocaleString() + ' kWh/yr';
+    document.getElementById('sum-offset').textContent      = Math.min(design.offsetPct, 999) + '%';
+    document.getElementById('sum-low').textContent         = '$' + (Math.round(lowCost/1000)*1000).toLocaleString();
+    document.getElementById('sum-high').textContent        = '$' + (Math.round(highCost/1000)*1000).toLocaleString();
+
+    const batRow = document.getElementById('sum-battery-row');
+    if (batPrice > 0) {
+      document.getElementById('sum-battery-label').textContent = bat.name;
+      document.getElementById('sum-battery-cost').textContent  = '+$' + batPrice.toLocaleString();
+      batRow.style.display = 'flex';
+    } else {
+      batRow.style.display = 'none';
+    }
+
+    document.getElementById('sum-total').textContent        = '$' + Math.round(totalCost).toLocaleString();
+    document.getElementById('sum-monthly-note').textContent =
+      '$' + Math.round(monthlyPayment).toLocaleString() + '/mo · ' + termYears + 'yr loan at ' + annualRate + '% interest';
+    document.getElementById('sum-payback').textContent      = payback ? payback + ' years' : 'Enter monthly bill to calculate';
+    document.getElementById('sum-address').textContent      = address || '—';
+    document.getElementById('sum-segments').textContent     = sp.roofSegmentStats?.length ?? '—';
+    document.getElementById('sum-sunshine').textContent     = sp.maxSunshineHoursPerYear ? Math.round(sp.maxSunshineHoursPerYear).toLocaleString()+' hrs' : '—';
+    document.getElementById('sum-maxpanels').textContent    = design.maxPanels ? design.maxPanels.toLocaleString() : '—';
   }
 
   // ── Event listeners ───────────────────────────────────────
@@ -829,11 +1117,13 @@
   document.getElementById('monthly-kwh').addEventListener('input', function(){ this.value=this.value.replace(/[^0-9.]/g,''); fieldError('monthly-kwh',false); setError(null); });
   document.getElementById('monthly-bill').addEventListener('input', function(){ this.value=this.value.replace(/[^0-9.,$]/g,''); });
   document.getElementById('rate').addEventListener('input', function(){ this.value=this.value.replace(/[^0-9.]/g,''); });
+  document.getElementById('loan-rate')?.addEventListener('input', function(){ this.value=this.value.replace(/[^0-9.]/g,''); recalcPayment(); });
+  document.getElementById('loan-term')?.addEventListener('change', () => recalcPayment());
 
 </script>
 
 <script
-  src="https://maps.googleapis.com/maps/api/js?key=__GOOGLE_API_KEY__&callback=onMapsReady"
+  src="https://maps.googleapis.com/maps/api/js?key=%%GOOGLE_API_KEY%%&callback=onMapsReady"
   async defer
   onerror="document.getElementById('setup-warning').style.display='block';document.getElementById('setup-warning').textContent='⚠️ Google Maps failed to load — check that your API key is correct and Maps JavaScript API is enabled.'">
 </script>
