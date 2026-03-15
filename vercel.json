@@ -1,0 +1,4 @@
+{
+  "buildCommand": "sed -i 's/%%GOOGLE_API_KEY%%/'$GOOGLE_API_KEY'/g' index.html",
+  "outputDirectory": "."
+}
