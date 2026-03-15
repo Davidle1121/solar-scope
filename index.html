@@ -220,7 +220,7 @@
 <body>
 
 <div id="setup-warning">
-  ⚠️ &nbsp;API key not configured — replace <code>%%GOOGLE_API_KEY%%</code> in this file with your Google Cloud API key.
+  ⚠️ &nbsp;API key not configured — API key substitution failed — check your Netlify environment variable GOOGLE_API_KEY is set.
 </div>
 
 <header>
@@ -449,7 +449,7 @@
 
   let map = null, drawnPanels = [], mapsReady = false, renderTimer = null;
 
-  if (API_KEY === '%%GOOGLE_API_KEY%%') document.getElementById('setup-warning').style.display = 'block';
+  if (!API_KEY || API_KEY.length < 20) document.getElementById('setup-warning').style.display = 'block';
   function onMapsReady() { mapsReady = true; }
 
   // ── UI helpers ────────────────────────────────────────────
@@ -522,7 +522,7 @@
     }
 
     if (!mapsReady) {
-      if (API_KEY === 'YOUR_API_KEY') setError('API key not configured', 'Replace YOUR_API_KEY in the file with your Google Cloud API key.');
+      if (!API_KEY || API_KEY.length < 20) setError('API key not configured', 'Check that the GOOGLE_API_KEY environment variable is set in Netlify Site settings.');
       else setError('Map is still loading', 'Wait a moment and try again.');
       return;
     }
