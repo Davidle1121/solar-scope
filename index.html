@@ -979,7 +979,7 @@
     document.getElementById('r-offset-pct').textContent = offsetCapped + '%';
     setTimeout(()=>{ document.getElementById('r-offset-fill').style.width = Math.min(offsetCapped, 100) + '%'; }, 60);
     document.getElementById('r-offset-note').textContent =
-      offsetCapped >= 120 ? 'This system would over-produce — you'd export excess power back to the grid.' :
+      offsetCapped >= 120 ? 'This system would over-produce — you export excess power back to the grid.' :
       offsetCapped >= 100 ? 'This system covers 100%+ of your usage — any surplus exported to grid.' :
       offsetCapped >=  90 ? 'Near full coverage — this system would cover almost your entire electricity bill.' :
       offsetCapped >=  70 ? 'Strong coverage — this system offsets the majority of your electric bill.' :
