@@ -440,7 +440,7 @@
 <footer>SOLARSCOPE · PERSONAL POC · DATA: GOOGLE SOLAR API · ALL ESTIMATES APPROXIMATE — NOT FINANCIAL ADVICE</footer>
 
 <script>
-  const API_KEY = '%%GOOGLE_API_KEY%%';
+  const API_KEY = '__GOOGLE_API_KEY__';
 
   // Panel colors — one per roof segment
   const SEG_COLORS = ['#FFB800','#3B82F6','#10B981','#EC4899','#A78BFA','#F97316','#06B6D4','#EF4444','#84CC16','#F43F5E'];
@@ -833,7 +833,7 @@
 </script>
 
 <script
-  src="https://maps.googleapis.com/maps/api/js?key=%%GOOGLE_API_KEY%%&callback=onMapsReady"
+  src="https://maps.googleapis.com/maps/api/js?key=__GOOGLE_API_KEY__&callback=onMapsReady"
   async defer
   onerror="document.getElementById('setup-warning').style.display='block';document.getElementById('setup-warning').textContent='⚠️ Google Maps failed to load — check that your API key is correct and Maps JavaScript API is enabled.'">
 </script>
