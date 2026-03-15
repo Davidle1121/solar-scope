@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>SolarScope Roof Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -17,7 +17,18 @@
       --card: rgba(17,34,64,0.8);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--sky); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+    
+    /* Mobile scroll fix applied to html and body */
+    html, body { 
+      font-family: 'DM Sans', sans-serif; 
+      background: var(--sky); 
+      color: var(--text); 
+      min-height: 100vh; 
+      overflow-x: hidden; 
+      width: 100%;
+      position: relative;
+    }
+    
     body::before {
       content: '';
       position: fixed; inset: 0;
@@ -33,7 +44,7 @@
     }
     body::after {
       content: ''; position: fixed; top: -200px; left: 50%; transform: translateX(-50%);
-      width: 900px; height: 500px;
+      width: 900px; height: 500px; max-width: 100vw;
       background: radial-gradient(ellipse at center, rgba(255,140,0,0.12) 0%, transparent 70%);
       pointer-events: none; z-index: 0;
     }
@@ -142,7 +153,7 @@
     .system-primary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
     .system-primary-item { text-align: center; padding: 0 12px; border-right: 1px solid var(--border); }
     .system-primary-item:last-child { border-right: none; }
-    .system-big-value { font-family: 'Syne', sans-serif; font-size: 2.6rem; font-weight: 800; color: #fff; line-height: 1; letter-spacing: -0.04em; }
+    .system-big-value { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 6vw, 2.6rem); font-weight: 800; color: #fff; line-height: 1; letter-spacing: -0.04em; }
     .system-big-unit { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--sun); margin-left: 3px; }
     .system-big-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 6px; }
 
@@ -185,7 +196,7 @@
     .no-data-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--text); margin-bottom: 10px; }
     .no-data-body { font-size: 0.88rem; color: var(--muted); line-height: 1.7; max-width: 460px; margin: 0 auto; }
 
-    footer { position: relative; z-index: 10; text-align: center; padding: 20px; border-top: 1px solid var(--border); font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.06em; }
+    footer { position: relative; z-index: 10; text-align: center; padding: 20px; border-top: 1px solid var(--border); font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.06em; word-wrap: break-word; }
 
     .battery-section { margin-bottom: 20px; }
     .battery-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
@@ -246,20 +257,30 @@
     .disclaimer-body p { margin-bottom: 8px; }
     .disclaimer-body p:last-child { margin-bottom: 0; }
 
+    /* Mobile specific optimizations */
     @media (max-width: 680px) {
       header { padding: 14px 16px; }
       .header-badge { display: none; }
+      .hero { padding: 40px 16px 30px; }
+      .hero h1 { font-size: 2.2rem; }
       .usage-grid { grid-template-columns: 1fr; }
       .two-col { grid-template-columns: 1fr; }
       .system-primary-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
       .system-primary-item { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
       .system-primary-item:nth-child(2n) { border-bottom: 1px solid var(--border); }
       .system-primary-item:nth-last-child(-n+2) { border-bottom: none; }
-      .cost-card { grid-template-columns: 1fr; }
+      .cost-card { grid-template-columns: 1fr; padding: 20px 16px; }
       .cost-divider { display: none; }
-      .stat-tooltip { left: 0; transform: none; width: 200px; }
+      .stat-tooltip { left: 50%; transform: translateX(-50%); width: calc(100vw - 40px); margin-left: 0; }
       .battery-grid { grid-template-columns: 1fr; }
-      .cost-controls { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .cost-controls { flex-direction: column; align-items: stretch; gap: 12px; }
+      .cost-control-group { width: 100%; }
+      .cost-ctrl-input { width: 100%; }
+      .recalc-btn { width: 100%; margin-top: 8px; padding: 14px; }
+      #map { height: 350px; }
+      .input-card, .system-card, .summary-card, .disclaimer-card { padding: 20px 16px; }
+      .summary-line { font-size: 0.8rem; }
+      .summary-line-label.indent { padding-left: 8px; }
     }
   </style>
 </head>
